@@ -40,15 +40,19 @@ public class StartPage extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(400, 550));
         setPreferredSize(new java.awt.Dimension(400, 550));
 
+        SinglePlayerBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         SinglePlayerBtn.setText("Single Player");
         SinglePlayerBtn.setFocusable(false);
 
+        multiPlayerBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         multiPlayerBtn.setText("Multi Player");
         multiPlayerBtn.setFocusable(false);
 
+        settingsBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         settingsBtn.setText("Settings");
         settingsBtn.setFocusable(false);
 
+        aboutBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         aboutBtn.setText("About");
         aboutBtn.setFocusable(false);
         aboutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +61,7 @@ public class StartPage extends javax.swing.JPanel {
             }
         });
 
+        exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         exitBtn.setText("Exit");
         exitBtn.setFocusable(false);
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
