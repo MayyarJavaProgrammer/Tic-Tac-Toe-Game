@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="multiPlayerBackBtn" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="playerOLabel" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="playerXLabel" min="-2" pref="84" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="playerXField" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="playerOField" min="-2" pref="118" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="multiPlayerStartBtn" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="94" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="playerXLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="playerXField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="playerOLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="playerOField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="multiPlayerStartBtn" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="multiPlayerBackBtn" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="playerXLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Player X"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="playerOLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Player O"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="playerXField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Player 1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="playerOField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Player 2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="multiPlayerStartBtn">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="16" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Start"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="multiPlayerBackBtn">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="16" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
