@@ -51,6 +51,11 @@ public class StartPage extends javax.swing.JPanel {
 
         aboutBtn.setText("About");
         aboutBtn.setFocusable(false);
+        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutBtnActionPerformed(evt);
+            }
+        });
 
         exitBtn.setText("Exit");
         exitBtn.setFocusable(false);
@@ -94,6 +99,18 @@ public class StartPage extends javax.swing.JPanel {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+         JOptionPane.showMessageDialog(null, """
+                        About TIC TAC TOE GAME
+                                                           
+                             Developed by Mayyar Zedan
+                                                           
+                                 Email : mayarzidane1@gmail.com      
+                                 Github : MayyarJavaProgrammer
+                                                           
+                                """, "About Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_aboutBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
