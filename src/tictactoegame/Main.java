@@ -30,7 +30,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         container = this.getContentPane();
         cardLayout = new CardLayout();
-        
+
         container.setLayout(cardLayout);
         showStartPage();
 
@@ -90,6 +90,7 @@ public class Main extends javax.swing.JFrame {
     private void showStartPage() {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
+        startPage.SinglePlayerBtn.addActionListener(multiPlayerBtnListener);
         
         container.getLayout().addLayoutComponent("startPage", startPage);
         container.add(startPage);
@@ -98,11 +99,20 @@ public class Main extends javax.swing.JFrame {
 
     ActionListener singlePlayerBtnListener = (evt) -> {
         singlePlayerPage = new SinglePlayerPage();
-        
+
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
         cardLayout.show(container, "singlePlayerPage");
     };
+
+     ActionListener multiPlayerBtnListener = (evt) -> {
+        multiPlayerPage = new MultiPlayerPage();
+
+        container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
+        container.add(multiPlayerPage);
+        cardLayout.show(container, "multiPlayerPage");
+    };
+    
     ItemListener fontSizeItemListener = (e) -> {
         if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             settingsPage.setFontSize(FontSizes.SMALL);
