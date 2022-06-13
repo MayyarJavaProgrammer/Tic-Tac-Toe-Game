@@ -2,6 +2,7 @@ package tictactoegame;
 
 import java.awt.CardLayout;
 import java.awt.Container;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 
 /*
@@ -27,9 +28,9 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-        startPage = new StartPage();
         container = this.getContentPane();
         cardLayout = new CardLayout();
+        
         container.setLayout(cardLayout);
         showStartPage();
 
@@ -86,6 +87,22 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
+    private void showStartPage() {
+        startPage = new StartPage();
+        startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
+        
+        container.getLayout().addLayoutComponent("startPage", startPage);
+        container.add(startPage);
+        cardLayout.show(container, "startPage");
+    }
+
+    ActionListener singlePlayerBtnListener = (evt) -> {
+        singlePlayerPage = new SinglePlayerPage();
+        
+        container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
+        container.add(singlePlayerPage);
+        cardLayout.show(container, "singlePlayerPage");
+    };
     ItemListener fontSizeItemListener = (e) -> {
         if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             settingsPage.setFontSize(FontSizes.SMALL);
@@ -96,11 +113,6 @@ public class Main extends javax.swing.JFrame {
         }
     };
 
-    private void showStartPage() {
-        container.getLayout().addLayoutComponent("startPage", startPage);
-        container.add(startPage);
-        cardLayout.show(container, "startPage");
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
