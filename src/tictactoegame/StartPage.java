@@ -1,18 +1,17 @@
 package tictactoegame;
 
-import java.net.URL;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 /**
  *
  * @author Mayyar
  */
-public class StartPage extends javax.swing.JPanel {
+public class StartPage extends javax.swing.JPanel implements ResetFont {
 
     /**
      * Creates new form StartPage
@@ -106,7 +105,7 @@ public class StartPage extends javax.swing.JPanel {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
-         JOptionPane.showMessageDialog(null, """
+        JOptionPane.showMessageDialog(null, """
                         About TIC TAC TOE GAME
                                                            
                              Developed by Mayyar Zedan
@@ -125,4 +124,13 @@ public class StartPage extends javax.swing.JPanel {
     private javax.swing.JButton multiPlayerBtn;
     private javax.swing.JButton settingsBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setFontSize(FontSizes fontSize) {
+        settingsBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        multiPlayerBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        exitBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        aboutBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        SinglePlayerBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+    }
 }

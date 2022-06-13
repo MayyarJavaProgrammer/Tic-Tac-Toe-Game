@@ -4,18 +4,19 @@
  */
 package tictactoegame;
 
+import java.awt.Font;
+
 /**
  *
  * @author Mayyar
  */
-public class SettingsPage extends javax.swing.JPanel {
+public class SettingsPage extends javax.swing.JPanel implements ResetFont{
 
     /**
      * Creates new form SettingsPage
      */
     public SettingsPage() {
         initComponents();
-//        jComboBox1.getIte
     }
 
     /**
@@ -68,13 +69,10 @@ public class SettingsPage extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(fontSizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(gameBoardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(gameBoardComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(fontSizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(gameBoardComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fontSizeComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,11 +96,21 @@ public class SettingsPage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> fontSizeComboBox;
+    public javax.swing.JComboBox<String> fontSizeComboBox;
     private javax.swing.JLabel fontSizeLabel;
     private javax.swing.JComboBox<String> gameBoardComboBox;
     private javax.swing.JLabel gameBoardLabel;
     private javax.swing.JButton resetSettingsBtn;
     private javax.swing.JButton settingsBackBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setFontSize(FontSizes fontSize) {
+        fontSizeComboBox.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        gameBoardComboBox.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        resetSettingsBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        settingsBackBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        gameBoardLabel.setFont(new Font("Arail", Font.BOLD, (fontSize.getFontSize() + 2)));
+        fontSizeLabel.setFont(new Font("Arail", Font.BOLD, (fontSize.getFontSize() + 2)));
+    }
 }

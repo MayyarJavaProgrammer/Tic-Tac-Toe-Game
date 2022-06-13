@@ -26,15 +26,10 @@
                           <Component id="fontSizeLabel" max="32767" attributes="0"/>
                           <Component id="gameBoardLabel" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="gameBoardComboBox" min="-2" pref="116" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="fontSizeComboBox" min="-2" pref="116" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="gameBoardComboBox" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                          <Component id="fontSizeComboBox" alignment="1" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -119,6 +114,7 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="resetSettingsBtn">

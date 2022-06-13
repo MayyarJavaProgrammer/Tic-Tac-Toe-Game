@@ -1,5 +1,7 @@
 package tictactoegame;
 
+import java.awt.event.ItemListener;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,6 +16,11 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    SettingsPage settingsPage;
+    SinglePlayerPage singlePlayerPage;
+    MultiPlayerPage multiPlayerPage;
+    GamePage gamePage;
+    StartPage startPage;
     public Main() {
         initComponents();
     }
@@ -31,7 +38,6 @@ public class Main extends javax.swing.JFrame {
         setTitle("Tic Tac Toe Game");
         setMaximumSize(new java.awt.Dimension(400, 550));
         setMinimumSize(new java.awt.Dimension(400, 550));
-        setPreferredSize(new java.awt.Dimension(400, 550));
         setResizable(false);
         setSize(new java.awt.Dimension(400, 550));
 
@@ -59,22 +65,7 @@ public class Main extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -84,6 +75,16 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    ItemListener fontSizeItemListener = (e) -> {
+        if(e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
+            settingsPage.setFontSize(FontSizes.SMALL);
+        } else if(e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
+            settingsPage.setFontSize(FontSizes.MEDUIM);
+        } else {
+            settingsPage.setFontSize(FontSizes.LARGE);
+        }
+    };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

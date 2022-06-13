@@ -4,11 +4,13 @@
  */
 package tictactoegame;
 
+import java.awt.Font;
+
 /**
  *
  * @author Mayyar
  */
-public class SinglePlayerPage extends javax.swing.JPanel {
+public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
 
     /**
      * Creates new form SinglePlayerPage
@@ -92,4 +94,11 @@ public class SinglePlayerPage extends javax.swing.JPanel {
     private javax.swing.JButton singlePlayerBackBtn;
     private javax.swing.JButton singlePlayerStartBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setFontSize(FontSizes fontSize) {
+        singlePlayerStartBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        singlePlayerBackBtn.setFont(new Font("Arail", Font.PLAIN, fontSize.getFontSize()));
+        playerNameLabel.setFont(new Font("Arail", Font.BOLD, (fontSize.getFontSize() + 2)));
+    }
 }
