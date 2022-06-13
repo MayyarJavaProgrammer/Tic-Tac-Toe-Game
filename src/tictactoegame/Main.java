@@ -25,7 +25,9 @@ public class Main extends javax.swing.JFrame {
     StartPage startPage;
     CardLayout cardLayout;
     Container container;
-
+    Player xPlayer;
+    Player oPlayer;
+    
     public Main() {
         initComponents();
         container = this.getContentPane();
@@ -91,13 +93,13 @@ public class Main extends javax.swing.JFrame {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
-        
+
         container.getLayout().addLayoutComponent("startPage", startPage);
         container.add(startPage);
         cardLayout.show(container, "startPage");
     }
-    
-    private void creatAndShowSinglePlayerPage (){
+
+    private void creatAndShowSinglePlayerPage() {
         singlePlayerPage = new SinglePlayerPage();
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
@@ -109,20 +111,20 @@ public class Main extends javax.swing.JFrame {
         creatAndShowSinglePlayerPage();
     };
 
-     ActionListener multiPlayerBtnListener = (evt) -> {
+    ActionListener multiPlayerBtnListener = (evt) -> {
         multiPlayerPage = new MultiPlayerPage();
 
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
     };
-     //single page listener
-     ActionListener singlePlayerStartBtnListener = (evt) -> {
-         gamePage = new GamePage();
-         container.getLayout().addLayoutComponent("gamePage", gamePage);
-         container.add(gamePage);
-         cardLayout.show(container, "gamePage");
-     };
+    //single page listener
+    ActionListener singlePlayerStartBtnListener = (evt) -> {       
+        gamePage = new GamePage();
+        container.getLayout().addLayoutComponent("gamePage", gamePage);
+        container.add(gamePage);
+        cardLayout.show(container, "gamePage");
+    };
     //settings page listener
     ItemListener fontSizeItemListener = (e) -> {
         if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
