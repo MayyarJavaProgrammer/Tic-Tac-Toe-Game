@@ -15,7 +15,6 @@ public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
     /**
      * Creates new form SinglePlayerPage
      */
-    Player xPlayer;
     public SinglePlayerPage() {
         initComponents();
     }
