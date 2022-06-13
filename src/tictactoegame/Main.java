@@ -90,7 +90,7 @@ public class Main extends javax.swing.JFrame {
     private void CreatAndShowStartPage() {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
-        startPage.SinglePlayerBtn.addActionListener(multiPlayerBtnListener);
+        startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
         
         container.getLayout().addLayoutComponent("startPage", startPage);
         container.add(startPage);
