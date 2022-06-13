@@ -32,7 +32,7 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
 
         container.setLayout(cardLayout);
-        showStartPage();
+        CreatAndShowStartPage();
 
     }
 
@@ -87,7 +87,7 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    private void showStartPage() {
+    private void CreatAndShowStartPage() {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.SinglePlayerBtn.addActionListener(multiPlayerBtnListener);
