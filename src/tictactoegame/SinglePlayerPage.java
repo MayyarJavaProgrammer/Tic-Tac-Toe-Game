@@ -37,11 +37,6 @@ public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
         playerNameField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         playerNameField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         playerNameField.setText("Player");
-        playerNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playerNameFieldActionPerformed(evt);
-            }
-        });
 
         playerNameLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         playerNameLabel.setText("Player name");
@@ -83,13 +78,9 @@ public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void playerNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_playerNameFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField playerNameField;
+    public javax.swing.JTextField playerNameField;
     private javax.swing.JLabel playerNameLabel;
     private javax.swing.JButton singlePlayerBackBtn;
     public javax.swing.JButton singlePlayerStartBtn;
