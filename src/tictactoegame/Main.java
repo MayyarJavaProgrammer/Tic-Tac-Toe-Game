@@ -1,12 +1,13 @@
 package tictactoegame;
 
+import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.event.ItemListener;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Mayyar
@@ -21,8 +22,17 @@ public class Main extends javax.swing.JFrame {
     MultiPlayerPage multiPlayerPage;
     GamePage gamePage;
     StartPage startPage;
+    CardLayout cardLayout;
+    Container container;
+
     public Main() {
         initComponents();
+        startPage = new StartPage();
+        container = this.getContentPane();
+        cardLayout = new CardLayout();
+        container.setLayout(cardLayout);
+        showStartPage();
+
     }
 
     /**
@@ -65,7 +75,7 @@ public class Main extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -75,16 +85,22 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
+
     ItemListener fontSizeItemListener = (e) -> {
-        if(e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
+        if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             settingsPage.setFontSize(FontSizes.SMALL);
-        } else if(e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
+        } else if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
             settingsPage.setFontSize(FontSizes.MEDUIM);
         } else {
             settingsPage.setFontSize(FontSizes.LARGE);
         }
     };
+
+    private void showStartPage() {
+        container.getLayout().addLayoutComponent("startPage", startPage);
+        container.add(startPage);
+        cardLayout.show(container, "startPage");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
