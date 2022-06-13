@@ -15,6 +15,7 @@ public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
     /**
      * Creates new form SinglePlayerPage
      */
+    Player xPlayer;
     public SinglePlayerPage() {
         initComponents();
     }
@@ -92,7 +93,7 @@ public class SinglePlayerPage extends javax.swing.JPanel implements ResetFont {
     private javax.swing.JTextField playerNameField;
     private javax.swing.JLabel playerNameLabel;
     private javax.swing.JButton singlePlayerBackBtn;
-    private javax.swing.JButton singlePlayerStartBtn;
+    public javax.swing.JButton singlePlayerStartBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override

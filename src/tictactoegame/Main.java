@@ -32,7 +32,7 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
 
         container.setLayout(cardLayout);
-        CreatAndShowStartPage();
+        creatAndShowStartPage();
 
     }
 
@@ -87,7 +87,7 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    private void CreatAndShowStartPage() {
+    private void creatAndShowStartPage() {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
@@ -96,13 +96,17 @@ public class Main extends javax.swing.JFrame {
         container.add(startPage);
         cardLayout.show(container, "startPage");
     }
-
-    ActionListener singlePlayerBtnListener = (evt) -> {
+    
+    private void creatAndShowSinglePlayerPage (){
         singlePlayerPage = new SinglePlayerPage();
-
+        singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
         cardLayout.show(container, "singlePlayerPage");
+    }
+//start page buttons listener
+    ActionListener singlePlayerBtnListener = (evt) -> {
+        creatAndShowSinglePlayerPage();
     };
 
      ActionListener multiPlayerBtnListener = (evt) -> {
@@ -112,7 +116,14 @@ public class Main extends javax.swing.JFrame {
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
     };
-    
+     //single page listener
+     ActionListener singlePlayerStartBtnListener = (evt) -> {
+         gamePage = new GamePage();
+         container.getLayout().addLayoutComponent("gamePage", gamePage);
+         container.add(gamePage);
+         cardLayout.show(container, "gamePage");
+     };
+    //settings page listener
     ItemListener fontSizeItemListener = (e) -> {
         if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             settingsPage.setFontSize(FontSizes.SMALL);
