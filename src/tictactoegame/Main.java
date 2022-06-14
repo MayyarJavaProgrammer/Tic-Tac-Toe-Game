@@ -135,7 +135,10 @@ public class Main extends javax.swing.JFrame {
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
-
+        gamePage.xPlayerNameLabel.setText(xPlayer.getName());
+        if (oPlayer != null) {
+            gamePage.oPlayerNameLabel.setText(oPlayer.getName());
+        }
         container.getLayout().addLayoutComponent("gamePage", gamePage);
         container.add(gamePage);
         cardLayout.show(container, "gamePage");
@@ -157,19 +160,19 @@ public class Main extends javax.swing.JFrame {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
         creatAndShowGamePage();
     };
-    
+
     ActionListener singlePlayerBackBtnListener = (evt) -> {
         singlePlayerPage = null;
         cardLayout.show(container, "startPage");
     };
-    
+
     //multi page listener
     ActionListener multiPlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
         oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
         creatAndShowGamePage();
     };
-    
+
     ActionListener multiPlayerBackBtnListener = (evt) -> {
         multiPlayerPage = null;
         cardLayout.show(container, "startPage");
@@ -187,7 +190,7 @@ public class Main extends javax.swing.JFrame {
         startPage.setFontSize(fontSize);
         settingsPage.setFontSize(fontSize);
     };
-    
+
     ActionListener settingsBackBtnListener = (evt) -> {
         settingsPage = null;
         cardLayout.show(container, "startPage");
@@ -197,11 +200,11 @@ public class Main extends javax.swing.JFrame {
         gamePage = null;
         xPlayer = null;
         oPlayer = null;
-      if(singlePlayerPage != null) {
-          cardLayout.show(container, "singlePlayerPage");
-      } else {
-          cardLayout.show(container, "multiPlayerPage");
-      } 
+        if (singlePlayerPage != null) {
+            cardLayout.show(container, "singlePlayerPage");
+        } else {
+            cardLayout.show(container, "multiPlayerPage");
+        }
     };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
