@@ -27,15 +27,15 @@ public class Main extends javax.swing.JFrame {
     Container container;
     Player xPlayer;
     Player oPlayer;
-    
+
     public Main() {
         initComponents();
         container = this.getContentPane();
         cardLayout = new CardLayout();
-        
+
         container.setLayout(cardLayout);
         creatAndShowStartPage();
-        
+
     }
 
     /**
@@ -88,17 +88,17 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void creatAndShowStartPage() {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
-        
+
         container.getLayout().addLayoutComponent("startPage", startPage);
         container.add(startPage);
         cardLayout.show(container, "startPage");
     }
-    
+
     private void creatAndShowSinglePlayerPage() {
         singlePlayerPage = new SinglePlayerPage();
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
@@ -106,23 +106,26 @@ public class Main extends javax.swing.JFrame {
         container.add(singlePlayerPage);
         cardLayout.show(container, "singlePlayerPage");
     }
-//start page buttons listener
-    ActionListener singlePlayerBtnListener = (evt) -> {
-        creatAndShowSinglePlayerPage();
-    };
-    
-    ActionListener multiPlayerBtnListener = (evt) -> {
+
+    private void creatAndShowMultiPlayerPage() {
         multiPlayerPage = new MultiPlayerPage();
-        
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
+    }
+//start page listener
+    ActionListener singlePlayerBtnListener = (evt) -> {
+        creatAndShowSinglePlayerPage();
+    };
+
+    ActionListener multiPlayerBtnListener = (evt) -> {
+        creatAndShowMultiPlayerPage();
     };
     //single page listener
-    ActionListener singlePlayerStartBtnListener = (evt) -> {        
+    ActionListener singlePlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
         gamePage = new GamePage();
-        
+
         container.getLayout().addLayoutComponent("gamePage", gamePage);
         container.add(gamePage);
         cardLayout.show(container, "gamePage");
