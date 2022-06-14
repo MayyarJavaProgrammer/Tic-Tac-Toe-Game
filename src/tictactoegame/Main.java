@@ -104,8 +104,8 @@ public class Main extends javax.swing.JFrame {
         singlePlayerPage = new SinglePlayerPage();
         singlePlayerPage.setFontSize(fontSize);
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
-        singlePlayerPage.singlePlayerBackBtn.addActionListener(backBtnListener);
-        
+        singlePlayerPage.singlePlayerBackBtn.addActionListener(singlePlayerBackBtnListener);
+
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
         cardLayout.show(container, "singlePlayerPage");
@@ -114,8 +114,9 @@ public class Main extends javax.swing.JFrame {
     private void creatAndShowMultiPlayerPage() {
         multiPlayerPage = new MultiPlayerPage();
         multiPlayerPage.setFontSize(fontSize);
-        multiPlayerPage.multiPlayerBackBtn.addActionListener(backBtnListener);
-        
+        multiPlayerPage.multiPlayerBackBtn.addActionListener(multiPlayerBackBtnListener);
+        multiPlayerPage.multiPlayerStartBtn.addActionListener(multiPlayerStartBtnListener);
+
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
@@ -123,9 +124,9 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowSettingsPage() {
         settingsPage = new SettingsPage();
-        settingsPage.settingsBackBtn.addActionListener(backBtnListener);
+        settingsPage.settingsBackBtn.addActionListener(settingsBackBtnListener);
         settingsPage.fontSizeComboBox.addItemListener(fontSizeItemListener);
-        
+
         container.getLayout().addLayoutComponent("settingsPage", settingsPage);
         container.add(settingsPage);
         cardLayout.show(container, "settingsPage");
@@ -133,8 +134,8 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
-        gamePage.gamePageBackBtn.addActionListener(backBtnListener);
-        
+        gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
+
         container.getLayout().addLayoutComponent("gamePage", gamePage);
         container.add(gamePage);
         cardLayout.show(container, "gamePage");
@@ -156,6 +157,23 @@ public class Main extends javax.swing.JFrame {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
         creatAndShowGamePage();
     };
+    
+    ActionListener singlePlayerBackBtnListener = (evt) -> {
+        singlePlayerPage = null;
+        cardLayout.show(container, "startPage");
+    };
+    
+    //multi page listener
+    ActionListener multiPlayerStartBtnListener = (evt) -> {
+        xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
+        oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
+        creatAndShowGamePage();
+    };
+    
+    ActionListener multiPlayerBackBtnListener = (evt) -> {
+        multiPlayerPage = null;
+        cardLayout.show(container, "startPage");
+    };
     //settings page listener
     ItemListener fontSizeItemListener = (e) -> {
 
@@ -169,11 +187,23 @@ public class Main extends javax.swing.JFrame {
         startPage.setFontSize(fontSize);
         settingsPage.setFontSize(fontSize);
     };
-
-    //back btn action
-    ActionListener backBtnListener = (evt) -> {
+    
+    ActionListener settingsBackBtnListener = (evt) -> {
+        settingsPage = null;
         cardLayout.show(container, "startPage");
     };
+    //game page listener
+    ActionListener gamePageBackBtnListener = (evt) -> {
+        gamePage = null;
+        xPlayer = null;
+        oPlayer = null;
+      if(singlePlayerPage != null) {
+          cardLayout.show(container, "singlePlayerPage");
+      } else {
+          cardLayout.show(container, "multiPlayerPage");
+      } 
+    };
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

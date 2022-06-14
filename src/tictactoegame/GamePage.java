@@ -44,6 +44,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         boardLabel7 = new javax.swing.JLabel();
         boardLabel8 = new javax.swing.JLabel();
         boardLabel9 = new javax.swing.JLabel();
+        restartGameBtn = new javax.swing.JButton();
         gamePageBackBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(400, 550));
@@ -98,6 +99,10 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         add(boardLabelsPanel);
         boardLabelsPanel.setBounds(35, 141, 330, 300);
 
+        restartGameBtn.setText("Restart");
+        add(restartGameBtn);
+        restartGameBtn.setBounds(240, 510, 140, 30);
+
         gamePageBackBtn.setText("Back");
         add(gamePageBackBtn);
         gamePageBackBtn.setBounds(20, 510, 140, 30);
@@ -119,6 +124,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     public javax.swing.JButton gamePageBackBtn;
     private javax.swing.JLabel oPlayerNameLabel;
     private javax.swing.JLabel oPlayerScore;
+    private javax.swing.JButton restartGameBtn;
     private javax.swing.JLabel vsSymbolLabel;
     private javax.swing.JLabel xPlayerNameLabel;
     private javax.swing.JLabel xPlayerScore;
