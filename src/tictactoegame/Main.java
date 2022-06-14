@@ -119,7 +119,8 @@ public class Main extends javax.swing.JFrame {
         cardLayout.show(container, "multiPlayerPage");
     };
     //single page listener
-    ActionListener singlePlayerStartBtnListener = (evt) -> {       
+    ActionListener singlePlayerStartBtnListener = (evt) -> {   
+        xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
         gamePage = new GamePage();
         container.getLayout().addLayoutComponent("gamePage", gamePage);
         container.add(gamePage);

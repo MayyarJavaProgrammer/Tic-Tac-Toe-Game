@@ -61,9 +61,9 @@ public class Player {
     public void setPlayerIcon(char playerIcon) {
         this.playerIcon = playerIcon;
         
-        if (playerIcon == 'x') {
+        if (playerIcon == 'X') {
             setColorIcon(Color.BLUE);
-        } else if (playerIcon == 'o') {
+        } else if (playerIcon == 'O') {
             setColorIcon(Color.RED);
         }
     }
