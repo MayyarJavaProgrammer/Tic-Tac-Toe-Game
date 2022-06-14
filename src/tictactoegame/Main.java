@@ -27,7 +27,7 @@ public class Main extends javax.swing.JFrame {
     Container container;
     Player xPlayer;
     Player oPlayer;
-
+    FontSizes fontSize;
     public Main() {
         initComponents();
         container = this.getContentPane();
@@ -101,7 +101,9 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowSinglePlayerPage() {
         singlePlayerPage = new SinglePlayerPage();
+        singlePlayerPage.setFontSize(fontSize);       
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
+        
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
         cardLayout.show(container, "singlePlayerPage");
@@ -109,6 +111,8 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowMultiPlayerPage() {
         multiPlayerPage = new MultiPlayerPage();
+        multiPlayerPage.setFontSize(fontSize);
+        
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
@@ -116,9 +120,19 @@ public class Main extends javax.swing.JFrame {
     
     private void creatAndShowSettingsPage() {
         settingsPage = new SettingsPage();
+        settingsPage.fontSizeComboBox.addItemListener(fontSizeItemListener);
+        
         container.getLayout().addLayoutComponent("settingsPage", settingsPage);
         container.add(settingsPage);
         cardLayout.show(container, "settingsPage");
+    }
+    
+    private void creatAndShowGamePage() {
+        gamePage = new GamePage();
+        
+        container.getLayout().addLayoutComponent("gamePage", gamePage);
+        container.add(gamePage);
+        cardLayout.show(container, "gamePage");
     }
 //start page listener
     ActionListener singlePlayerBtnListener = (evt) -> {
@@ -135,25 +149,20 @@ public class Main extends javax.swing.JFrame {
     //single page listener
     ActionListener singlePlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
-        gamePage = new GamePage();
-
-        container.getLayout().addLayoutComponent("gamePage", gamePage);
-        container.add(gamePage);
-        cardLayout.show(container, "gamePage");
+        creatAndShowGamePage();
     };
     //settings page listener
-    ItemListener fontSizeItemListener = (e) -> {
-        FontSizes fontSize = FontSizes.MEDUIM;
-        if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
+    ItemListener fontSizeItemListener = (e) -> { 
+        
+        if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             fontSize = FontSizes.SMALL;
-        } else if (e.getItemSelectable().equals(settingsPage.fontSizeComboBox.getItemAt(2))) {
+        } else if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
+            fontSize = FontSizes.MEDUIM;
+        } else {
             fontSize = FontSizes.LARGE;
         }
         startPage.setFontSize(fontSize);
         settingsPage.setFontSize(fontSize);
-        singlePlayerPage.setFontSize(fontSize);
-        multiPlayerPage.setFontSize(fontSize);
-        gamePage.setFontSize(fontSize);
     };
 
 
