@@ -27,7 +27,8 @@ public class Main extends javax.swing.JFrame {
     Container container;
     Player xPlayer;
     Player oPlayer;
-    FontSizes fontSize;
+    FontSizes fontSize = FontSizes.MEDUIM;
+
     public Main() {
         initComponents();
         container = this.getContentPane();
@@ -101,8 +102,9 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowSinglePlayerPage() {
         singlePlayerPage = new SinglePlayerPage();
-        singlePlayerPage.setFontSize(fontSize);       
+        singlePlayerPage.setFontSize(fontSize);
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
+        singlePlayerPage.singlePlayerBackBtn.addActionListener(backBtnListener);
         
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
@@ -112,23 +114,26 @@ public class Main extends javax.swing.JFrame {
     private void creatAndShowMultiPlayerPage() {
         multiPlayerPage = new MultiPlayerPage();
         multiPlayerPage.setFontSize(fontSize);
+        multiPlayerPage.multiPlayerBackBtn.addActionListener(backBtnListener);
         
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
     }
-    
+
     private void creatAndShowSettingsPage() {
         settingsPage = new SettingsPage();
+        settingsPage.settingsBackBtn.addActionListener(backBtnListener);
         settingsPage.fontSizeComboBox.addItemListener(fontSizeItemListener);
         
         container.getLayout().addLayoutComponent("settingsPage", settingsPage);
         container.add(settingsPage);
         cardLayout.show(container, "settingsPage");
     }
-    
+
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
+        gamePage.gamePageBackBtn.addActionListener(backBtnListener);
         
         container.getLayout().addLayoutComponent("gamePage", gamePage);
         container.add(gamePage);
@@ -142,7 +147,7 @@ public class Main extends javax.swing.JFrame {
     ActionListener multiPlayerBtnListener = (evt) -> {
         creatAndShowMultiPlayerPage();
     };
-    
+
     ActionListener settingsBtnListener = (evt) -> {
         creatAndShowSettingsPage();
     };
@@ -152,8 +157,8 @@ public class Main extends javax.swing.JFrame {
         creatAndShowGamePage();
     };
     //settings page listener
-    ItemListener fontSizeItemListener = (e) -> { 
-        
+    ItemListener fontSizeItemListener = (e) -> {
+
         if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
             fontSize = FontSizes.SMALL;
         } else if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
@@ -165,7 +170,10 @@ public class Main extends javax.swing.JFrame {
         settingsPage.setFontSize(fontSize);
     };
 
-
+    //back btn action
+    ActionListener backBtnListener = (evt) -> {
+        cardLayout.show(container, "startPage");
+    };
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

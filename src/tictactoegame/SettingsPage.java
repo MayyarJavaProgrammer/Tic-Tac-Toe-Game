@@ -101,7 +101,7 @@ public class SettingsPage extends javax.swing.JPanel implements ResetFont{
     private javax.swing.JComboBox<String> gameBoardComboBox;
     private javax.swing.JLabel gameBoardLabel;
     private javax.swing.JButton resetSettingsBtn;
-    private javax.swing.JButton settingsBackBtn;
+    public javax.swing.JButton settingsBackBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override

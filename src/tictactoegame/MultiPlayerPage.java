@@ -93,7 +93,7 @@ public class MultiPlayerPage extends javax.swing.JPanel implements ResetFont {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton multiPlayerBackBtn;
+    public javax.swing.JButton multiPlayerBackBtn;
     private javax.swing.JButton multiPlayerStartBtn;
     private javax.swing.JTextField playerOField;
     private javax.swing.JLabel playerOLabel;
