@@ -122,7 +122,7 @@ public class StartPage extends javax.swing.JPanel implements ResetFont {
     private javax.swing.JButton aboutBtn;
     private javax.swing.JButton exitBtn;
     public javax.swing.JButton multiPlayerBtn;
-    private javax.swing.JButton settingsBtn;
+    public javax.swing.JButton settingsBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override

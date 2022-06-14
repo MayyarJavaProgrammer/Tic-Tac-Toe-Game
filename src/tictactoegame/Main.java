@@ -93,7 +93,7 @@ public class Main extends javax.swing.JFrame {
         startPage = new StartPage();
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
-
+        startPage.settingsBtn.addActionListener(settingsBtnListener);
         container.getLayout().addLayoutComponent("startPage", startPage);
         container.add(startPage);
         cardLayout.show(container, "startPage");
@@ -113,6 +113,13 @@ public class Main extends javax.swing.JFrame {
         container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
     }
+    
+    private void creatAndShowSettingsPage() {
+        settingsPage = new SettingsPage();
+        container.getLayout().addLayoutComponent("settingsPage", settingsPage);
+        container.add(settingsPage);
+        cardLayout.show(container, "settingsPage");
+    }
 //start page listener
     ActionListener singlePlayerBtnListener = (evt) -> {
         creatAndShowSinglePlayerPage();
@@ -120,6 +127,10 @@ public class Main extends javax.swing.JFrame {
 
     ActionListener multiPlayerBtnListener = (evt) -> {
         creatAndShowMultiPlayerPage();
+    };
+    
+    ActionListener settingsBtnListener = (evt) -> {
+        creatAndShowSettingsPage();
     };
     //single page listener
     ActionListener singlePlayerStartBtnListener = (evt) -> {
