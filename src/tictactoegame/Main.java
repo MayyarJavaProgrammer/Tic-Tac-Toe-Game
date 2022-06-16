@@ -133,6 +133,7 @@ public class Main extends javax.swing.JFrame {
         gamePage = new GamePage();
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.addBoardLabels();
+        gamePage.setFontSize(fontSize);
         setBoardLabelsListener();
         gamePage.xPlayerNameLabel.setText(xPlayer.getName());
         if (oPlayer != null) {
