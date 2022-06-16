@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 import javax.swing.JLabel;
+import jdk.jfr.FlightRecorder;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Main extends javax.swing.JFrame {
     Player oPlayer;
     FontSizes fontSize = FontSizes.MEDUIM;
     boolean isTwoPlayerGame;
-    public Main() {
+    public Main() {       
         initComponents();
         creatContainer();
         creatAndShowStartPage();
@@ -140,6 +141,9 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
+        xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
+        oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
+        
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.restartGameBtn.addActionListener(restartgameBtnListener);
         gamePage.addBoardLabels();
@@ -166,6 +170,18 @@ public class Main extends javax.swing.JFrame {
         gamePage.boardLabels[7].addMouseListener(boardLabelsListener);
         gamePage.boardLabels[8].addMouseListener(boardLabelsListener);
     }
+    
+    private void removeBoardLabelsListener() {
+        gamePage.boardLabels[0].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[1].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[2].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[3].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[4].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[5].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[6].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[7].removeMouseListener(boardLabelsListener);
+        gamePage.boardLabels[8].removeMouseListener(boardLabelsListener);
+    }
 //start page listener
     ActionListener singlePlayerBtnListener = (evt) -> {
         creatAndShowSinglePlayerPage();
@@ -191,8 +207,6 @@ public class Main extends javax.swing.JFrame {
 
     //multi page listener
     ActionListener multiPlayerStartBtnListener = (evt) -> {
-        xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
-        oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
         isTwoPlayerGame = true;
         creatAndShowGamePage();
     };
@@ -240,32 +254,46 @@ public class Main extends javax.swing.JFrame {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (((JLabel) e.getSource()).getText().equals("")) {
+            if (((JLabel) e.getSource()).getText().equals("") && gamePage.getNumberOfClick() < 9) {
                 if (xPlayer.isPlayerTurn()) {                  
                     ((JLabel) e.getSource()).setForeground(xPlayer.getColorIcon());
                     ((JLabel) e.getSource()).setText("" + xPlayer.getPlayerIcon());
                     xPlayer.setPlayerTurn(false);
-
-                    gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
-                    gamePage.oPlayerNameLabel.setForeground(Color.red);
-                } else if (!xPlayer.isPlayerTurn()) {
+                    gamePage.plusNumberOfClick();
+                    gamePage.checkIfThereIsAWinner();
+                    if(!gamePage.isGameEnd()) {
+                        gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
+                        gamePage.oPlayerNameLabel.setForeground(Color.red);
+                    } else {
+                        System.out.println("rm");
+                        removeBoardLabelsListener();                       
+                    }
+                } else if (isTwoPlayerGame && gamePage.getNumberOfClick() < 9) {
                     ((JLabel) e.getSource()).setText("" + oPlayer.getPlayerIcon());
                     ((JLabel) e.getSource()).setForeground(oPlayer.getColorIcon());
                     xPlayer.setPlayerTurn(true);
-                    
-                    gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
-                    gamePage.xPlayerNameLabel.setForeground(Color.blue);
+                    gamePage.plusNumberOfClick();
+                    gamePage.checkIfThereIsAWinner();
+                    if(!gamePage.isGameEnd()) {
+                        gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
+                        gamePage.xPlayerNameLabel.setForeground(Color.blue);
+                    } else {
+                        removeBoardLabelsListener();
+                    }
                 } 
-                if(oPlayer == null && !xPlayer.isPlayerTurn()) {
+                if(!isTwoPlayerGame && !xPlayer.isPlayerTurn() && gamePage.getNumberOfClick() < 9 && !gamePage.isGameEnd()) {
                     int randomBoardLabel = new Random().nextInt(9);
                     while (true) {
                         if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
                             gamePage.boardLabels[randomBoardLabel].setText("O");
                             gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
-
-                            gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
-                            gamePage.xPlayerNameLabel.setForeground(Color.blue);
-                            xPlayer.setPlayerTurn(true);
+                             if(!gamePage.isGameEnd()) {
+                                gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
+                                gamePage.xPlayerNameLabel.setForeground(Color.blue);
+                                xPlayer.setPlayerTurn(true);
+                            } else {
+                                 removeBoardLabelsListener();
+                             }
                             break;
                         } else {
                             randomBoardLabel = new Random().nextInt(9);

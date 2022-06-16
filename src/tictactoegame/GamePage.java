@@ -17,6 +17,24 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     /**
      * Creates new form GamePage
      */
+    private boolean gameEnd;
+    private int numberOfClick;
+
+    public int getNumberOfClick() {
+        return numberOfClick;
+    }
+
+    public void plusNumberOfClick() {
+        this.numberOfClick += 1;
+    }
+    public boolean isGameEnd() {
+        return gameEnd;
+    }
+
+    public void setGameEnd(boolean gameEnd) {
+        this.gameEnd = gameEnd;
+    }
+
     public GamePage() {
         initComponents();
     }
@@ -24,7 +42,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     public void addBoardLabels() {
         boardLabels = new JLabel[9];
 
-        for (int i = 0 ;i < boardLabels.length ; i++) {
+        for (int i = 0; i < boardLabels.length; i++) {
             boardLabels[i] = new JLabel("", JLabel.CENTER);
             boardLabels[i].setBackground(Color.YELLOW);
             boardLabels[i].setFont(new Font("Arail", Font.BOLD, 40));
@@ -124,5 +142,66 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         vsSymbolLabel.setFont(new Font("Arail", Font.PLAIN, (fontSize.getFontSize() - 2)));
         xPlayerNameLabel.setFont(new Font("Arail", Font.BOLD, (fontSize.getFontSize() + 2)));
         oPlayerNameLabel.setFont(new Font("Arail", Font.BOLD, (fontSize.getFontSize() + 2)));
+    }
+
+    public void checkIfThereIsAWinner() {
+        char winnerIconPlayer;
+        if (boardLabels[0].getText().equals(boardLabels[1].getText()) && boardLabels[0].getText().equals(boardLabels[2].getText()) && !boardLabels[0].getText().equals("")) {
+            winnerIconPlayer = boardLabels[0].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[0], boardLabels[1], boardLabels[2]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[3].getText().equals(boardLabels[4].getText()) && boardLabels[3].getText().equals(boardLabels[5].getText()) && !boardLabels[3].getText().equals("")) {
+            winnerIconPlayer = boardLabels[3].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[3], boardLabels[4], boardLabels[5]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[6].getText().equals(boardLabels[7].getText()) && boardLabels[6].getText().equals(boardLabels[8].getText()) && !boardLabels[6].getText().equals("")) {
+            winnerIconPlayer = boardLabels[6].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[6], boardLabels[7], boardLabels[8]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[0].getText().equals(boardLabels[3].getText()) && boardLabels[0].getText().equals(boardLabels[6].getText()) && !boardLabels[0].getText().equals("")) {
+            winnerIconPlayer = boardLabels[0].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[0], boardLabels[3], boardLabels[6]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[1].getText().equals(boardLabels[4].getText()) && boardLabels[1].getText().equals(boardLabels[7].getText()) && !boardLabels[1].getText().equals("")) {
+            winnerIconPlayer = boardLabels[2].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[1], boardLabels[4], boardLabels[7]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[2].getText().equals(boardLabels[5].getText()) && boardLabels[2].getText().equals(boardLabels[8].getText()) && !boardLabels[2].getText().equals("")) {
+            winnerIconPlayer = boardLabels[2].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[2], boardLabels[5], boardLabels[8]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        }else if (boardLabels[0].getText().equals(boardLabels[4].getText()) && boardLabels[0].getText().equals(boardLabels[8].getText()) && !boardLabels[0].getText().equals("")) {
+            winnerIconPlayer = boardLabels[0].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[0], boardLabels[4], boardLabels[8]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        } else if (boardLabels[2].getText().equals(boardLabels[4].getText()) && boardLabels[2].getText().equals(boardLabels[6].getText()) && !boardLabels[2].getText().equals("")) {
+            winnerIconPlayer = boardLabels[0].getText().charAt(0);
+            changeWinnerLabelsColor(boardLabels[2], boardLabels[4], boardLabels[6]);
+            changeScore(winnerIconPlayer);
+            setGameEnd(true);
+        }
+        
+    }
+
+    private void changeWinnerLabelsColor(JLabel label1, JLabel label2, JLabel label3) {
+        label1.setOpaque(true);
+        label2.setOpaque(true);
+        label3.setOpaque(true);
+        repaint();
+    }
+
+    private void changeScore(char winnerIconPlayer) {
+        if (winnerIconPlayer == 'X') {
+            xPlayerScore.setText((Integer.parseInt(xPlayerScore.getText()) + 1 + ""));
+        } else {
+            oPlayerScore.setText((Integer.parseInt(oPlayerScore.getText()) + 1 + ""));
+        }        
     }
 }
