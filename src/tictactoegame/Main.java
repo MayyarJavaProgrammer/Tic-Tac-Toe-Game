@@ -141,8 +141,8 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
-        xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
-        oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
+        xPlayer = new Player(0, "X - Player", true, 'X');
+        oPlayer = new Player(0, "O - Player", false, 'O');
         
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.restartGameBtn.addActionListener(restartgameBtnListener);

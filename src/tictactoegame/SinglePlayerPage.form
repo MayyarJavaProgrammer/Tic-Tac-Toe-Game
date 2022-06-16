@@ -57,7 +57,7 @@
           <Font name="Arial" size="16" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Player"/>
+        <Property name="text" type="java.lang.String" value="X - Player"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

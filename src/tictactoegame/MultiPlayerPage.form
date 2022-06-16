@@ -80,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="playerXField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Player 1"/>
+        <Property name="text" type="java.lang.String" value="X - player"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -88,8 +88,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="playerOField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Player 2"/>
+        <Property name="text" type="java.lang.String" value="O - player"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playerOFieldActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
