@@ -60,7 +60,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         xPlayerNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         xPlayerNameLabel.setText("X - player");
         add(xPlayerNameLabel);
-        xPlayerNameLabel.setBounds(35, 25, 71, 19);
+        xPlayerNameLabel.setBounds(6, 25, 150, 19);
 
         xPlayerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         xPlayerScore.setText("0");
@@ -71,7 +71,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         oPlayerNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         oPlayerNameLabel.setText("O - player");
         add(oPlayerNameLabel);
-        oPlayerNameLabel.setBounds(286, 25, 79, 19);
+        oPlayerNameLabel.setBounds(246, 25, 150, 19);
 
         oPlayerScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         oPlayerScore.setText("0");
