@@ -90,7 +90,6 @@ public class Main extends javax.swing.JFrame {
         multiPlayerPage = new MultiPlayerPage();
         settingsPage = new SettingsPage();
         cardLayout = new CardLayout();
-        gamePage = new GamePage();
         container = this.getContentPane();
         
         container.setLayout(cardLayout);
@@ -106,8 +105,7 @@ public class Main extends javax.swing.JFrame {
         container.getLayout().addLayoutComponent("settingsPage", settingsPage);
         container.add(settingsPage);
         
-        container.getLayout().addLayoutComponent("gamePage", gamePage);
-        container.add(gamePage);       
+      
     }
     private void creatAndShowStartPage() {
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
@@ -141,7 +139,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void creatAndShowGamePage() {
+        gamePage = new GamePage();
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
+        gamePage.restartGameBtn.addActionListener(restartgameBtnListener);
         gamePage.addBoardLabels();
         gamePage.setFontSize(fontSize);
         setBoardLabelsListener();
@@ -149,7 +149,9 @@ public class Main extends javax.swing.JFrame {
         if (isTwoPlayerGame) {
             gamePage.oPlayerNameLabel.setText(oPlayer.getName());
         }
-
+        
+        container.getLayout().addLayoutComponent("gamePage", gamePage);
+        container.add(gamePage); 
         cardLayout.show(container, "gamePage");
     }
 
@@ -217,13 +219,20 @@ public class Main extends javax.swing.JFrame {
     };
     //game page listener
     ActionListener gamePageBackBtnListener = (evt) -> {
+        //remove game page
+        gamePage = null;
         if (isTwoPlayerGame) {
             cardLayout.show(container, "multiPlayerPage");
         } else {
             cardLayout.show(container, "singlePlayerPage");
         }
     };
-
+    
+    ActionListener restartgameBtnListener = (evt) -> {
+        gamePage = null;
+        creatAndShowGamePage();
+    };
+    
     MouseListener boardLabelsListener = new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
