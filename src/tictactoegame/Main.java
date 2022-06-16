@@ -226,19 +226,18 @@ public class Main extends javax.swing.JFrame {
         @Override
         public void mousePressed(MouseEvent e) {
             if (((JLabel) e.getSource()).getText().equals("")) {
-                if (xPlayer.isPlayerTurn()) {
+                if (xPlayer.isPlayerTurn()) {                  
                     ((JLabel) e.getSource()).setForeground(xPlayer.getColorIcon());
                     ((JLabel) e.getSource()).setText("" + xPlayer.getPlayerIcon());
                     xPlayer.setPlayerTurn(false);
 
                     gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
                     gamePage.oPlayerNameLabel.setForeground(Color.red);
-                    System.out.println("x turn");
                 } else if (oPlayer != null) {
                     ((JLabel) e.getSource()).setText("" + oPlayer.getPlayerIcon());
                     ((JLabel) e.getSource()).setForeground(oPlayer.getColorIcon());
                     xPlayer.setPlayerTurn(true);
-                    System.out.println("o turn");
+                    
                     gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
                     gamePage.xPlayerNameLabel.setForeground(Color.blue);
                 } 
@@ -248,7 +247,7 @@ public class Main extends javax.swing.JFrame {
                         if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
                             gamePage.boardLabels[randomBoardLabel].setText("O");
                             gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
-                            System.out.println("computer turn");
+
                             gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
                             gamePage.xPlayerNameLabel.setForeground(Color.blue);
                             xPlayer.setPlayerTurn(true);
