@@ -33,13 +33,10 @@ public class Main extends javax.swing.JFrame {
     Player xPlayer;
     Player oPlayer;
     FontSizes fontSize = FontSizes.MEDUIM;
-
+    boolean isTwoPlayerGame;
     public Main() {
         initComponents();
-        container = this.getContentPane();
-        cardLayout = new CardLayout();
-
-        container.setLayout(cardLayout);
+        creatContainer();
         creatAndShowStartPage();
     }
 
@@ -87,60 +84,72 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    private void creatAndShowStartPage() {
+    private void creatContainer() {
         startPage = new StartPage();
+        singlePlayerPage = new SinglePlayerPage();
+        multiPlayerPage = new MultiPlayerPage();
+        settingsPage = new SettingsPage();
+        cardLayout = new CardLayout();
+        gamePage = new GamePage();
+        container = this.getContentPane();
+        
+        container.setLayout(cardLayout);
+        container.getLayout().addLayoutComponent("startPage", startPage);
+        container.add(startPage);       
+
+        container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
+        container.add(singlePlayerPage);
+     
+        container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
+        container.add(multiPlayerPage);
+               
+        container.getLayout().addLayoutComponent("settingsPage", settingsPage);
+        container.add(settingsPage);
+        
+        container.getLayout().addLayoutComponent("gamePage", gamePage);
+        container.add(gamePage);       
+    }
+    private void creatAndShowStartPage() {
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
         startPage.settingsBtn.addActionListener(settingsBtnListener);
-        container.getLayout().addLayoutComponent("startPage", startPage);
-        container.add(startPage);
+        
         cardLayout.show(container, "startPage");
     }
 
     private void creatAndShowSinglePlayerPage() {
-        singlePlayerPage = new SinglePlayerPage();
         singlePlayerPage.setFontSize(fontSize);
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
         singlePlayerPage.singlePlayerBackBtn.addActionListener(singlePlayerBackBtnListener);
-
-        container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
-        container.add(singlePlayerPage);
+        
         cardLayout.show(container, "singlePlayerPage");
     }
 
     private void creatAndShowMultiPlayerPage() {
-        multiPlayerPage = new MultiPlayerPage();
         multiPlayerPage.setFontSize(fontSize);
         multiPlayerPage.multiPlayerBackBtn.addActionListener(multiPlayerBackBtnListener);
         multiPlayerPage.multiPlayerStartBtn.addActionListener(multiPlayerStartBtnListener);
 
-        container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
-        container.add(multiPlayerPage);
         cardLayout.show(container, "multiPlayerPage");
     }
 
     private void creatAndShowSettingsPage() {
-        settingsPage = new SettingsPage();
         settingsPage.settingsBackBtn.addActionListener(settingsBackBtnListener);
         settingsPage.fontSizeComboBox.addItemListener(fontSizeItemListener);
 
-        container.getLayout().addLayoutComponent("settingsPage", settingsPage);
-        container.add(settingsPage);
         cardLayout.show(container, "settingsPage");
     }
 
     private void creatAndShowGamePage() {
-        gamePage = new GamePage();
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.addBoardLabels();
         gamePage.setFontSize(fontSize);
         setBoardLabelsListener();
         gamePage.xPlayerNameLabel.setText(xPlayer.getName());
-        if (oPlayer != null) {
+        if (isTwoPlayerGame) {
             gamePage.oPlayerNameLabel.setText(oPlayer.getName());
         }
-        container.getLayout().addLayoutComponent("gamePage", gamePage);
-        container.add(gamePage);
+
         cardLayout.show(container, "gamePage");
     }
 
@@ -170,11 +179,11 @@ public class Main extends javax.swing.JFrame {
     //single page listener
     ActionListener singlePlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
+        isTwoPlayerGame = false;
         creatAndShowGamePage();
     };
 
     ActionListener singlePlayerBackBtnListener = (evt) -> {
-        singlePlayerPage = null;
         cardLayout.show(container, "startPage");
     };
 
@@ -182,11 +191,11 @@ public class Main extends javax.swing.JFrame {
     ActionListener multiPlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
         oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
+        isTwoPlayerGame = true;
         creatAndShowGamePage();
     };
 
     ActionListener multiPlayerBackBtnListener = (evt) -> {
-        multiPlayerPage = null;
         cardLayout.show(container, "startPage");
     };
     //settings page listener
@@ -204,18 +213,14 @@ public class Main extends javax.swing.JFrame {
     };
 
     ActionListener settingsBackBtnListener = (evt) -> {
-        settingsPage = null;
         cardLayout.show(container, "startPage");
     };
     //game page listener
     ActionListener gamePageBackBtnListener = (evt) -> {
-        gamePage = null;
-        xPlayer = null;
-        oPlayer = null;
-        if (singlePlayerPage != null) {
-            cardLayout.show(container, "singlePlayerPage");
-        } else {
+        if (isTwoPlayerGame) {
             cardLayout.show(container, "multiPlayerPage");
+        } else {
+            cardLayout.show(container, "singlePlayerPage");
         }
     };
 
@@ -234,7 +239,7 @@ public class Main extends javax.swing.JFrame {
 
                     gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
                     gamePage.oPlayerNameLabel.setForeground(Color.red);
-                } else if (oPlayer != null) {
+                } else if (!xPlayer.isPlayerTurn()) {
                     ((JLabel) e.getSource()).setText("" + oPlayer.getPlayerIcon());
                     ((JLabel) e.getSource()).setForeground(oPlayer.getColorIcon());
                     xPlayer.setPlayerTurn(true);
