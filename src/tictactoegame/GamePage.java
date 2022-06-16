@@ -24,7 +24,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         return numberOfClick;
     }
 
-    public void plusNumberOfClick() {
+    public void increaseNumberOfClick() {
         this.numberOfClick += 1;
     }
     public boolean isGameEnd() {
@@ -109,7 +109,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
 
         boardLabelsPanel.setFocusable(false);
         boardLabelsPanel.setMinimumSize(new java.awt.Dimension(270, 270));
-        boardLabelsPanel.setLayout(new java.awt.GridLayout(3, 3, 25, 25));
+        boardLabelsPanel.setLayout(new java.awt.GridLayout(3, 8, 25, 27));
         add(boardLabelsPanel);
         boardLabelsPanel.setBounds(35, 141, 300, 300);
 
@@ -167,7 +167,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
             changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[1].getText().equals(boardLabels[4].getText()) && boardLabels[1].getText().equals(boardLabels[7].getText()) && !boardLabels[1].getText().equals("")) {
-            winnerIconPlayer = boardLabels[2].getText().charAt(0);
+            winnerIconPlayer = boardLabels[1].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[1], boardLabels[4], boardLabels[7]);
             changeScore(winnerIconPlayer);
             setGameEnd(true);
@@ -182,7 +182,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
             changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[2].getText().equals(boardLabels[4].getText()) && boardLabels[2].getText().equals(boardLabels[6].getText()) && !boardLabels[2].getText().equals("")) {
-            winnerIconPlayer = boardLabels[0].getText().charAt(0);
+            winnerIconPlayer = boardLabels[2].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[2], boardLabels[4], boardLabels[6]);
             changeScore(winnerIconPlayer);
             setGameEnd(true);
@@ -191,9 +191,9 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     }
 
     private void changeWinnerLabelsColor(JLabel label1, JLabel label2, JLabel label3) {
-        label1.setOpaque(true);
-        label2.setOpaque(true);
-        label3.setOpaque(true);
+        label1.setForeground(Color.YELLOW);
+        label2.setForeground(Color.YELLOW);
+        label3.setForeground(Color.YELLOW);
         repaint();
     }
 

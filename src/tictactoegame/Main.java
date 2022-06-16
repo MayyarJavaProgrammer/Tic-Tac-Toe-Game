@@ -259,20 +259,19 @@ public class Main extends javax.swing.JFrame {
                     ((JLabel) e.getSource()).setForeground(xPlayer.getColorIcon());
                     ((JLabel) e.getSource()).setText("" + xPlayer.getPlayerIcon());
                     xPlayer.setPlayerTurn(false);
-                    gamePage.plusNumberOfClick();
+                    gamePage.increaseNumberOfClick();
                     gamePage.checkIfThereIsAWinner();
                     if(!gamePage.isGameEnd()) {
                         gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
                         gamePage.oPlayerNameLabel.setForeground(Color.red);
                     } else {
-                        System.out.println("rm");
                         removeBoardLabelsListener();                       
                     }
                 } else if (isTwoPlayerGame && gamePage.getNumberOfClick() < 9) {
                     ((JLabel) e.getSource()).setText("" + oPlayer.getPlayerIcon());
                     ((JLabel) e.getSource()).setForeground(oPlayer.getColorIcon());
                     xPlayer.setPlayerTurn(true);
-                    gamePage.plusNumberOfClick();
+                    gamePage.increaseNumberOfClick();
                     gamePage.checkIfThereIsAWinner();
                     if(!gamePage.isGameEnd()) {
                         gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
