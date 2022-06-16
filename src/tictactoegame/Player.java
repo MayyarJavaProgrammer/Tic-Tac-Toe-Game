@@ -15,7 +15,7 @@ public class Player {
     
     private int score;
     private String name;
-    private boolean isPlayerTurn;
+    private boolean PlayerTurn;
     private char playerIcon;
     private Color colorIcon;
     
@@ -23,19 +23,19 @@ public class Player {
         
     }
     
-    public Player(int score, String name, boolean isPlayerTurn, char playerIcon) {
-        this.score = score;
-        this.name = name;
-        this.isPlayerTurn = isPlayerTurn;
-        this.playerIcon = playerIcon;
+    public Player(int score, String name, boolean PlayerTurn, char playerIcon) {
+        this.setScore(score);
+        this.setName(name);
+        this.setPlayerTurn(PlayerTurn);
+        this.setPlayerIcon(playerIcon);
     }
     
-    public boolean isIsPlayerTurn() {
-        return isPlayerTurn;
+    public boolean isPlayerTurn() {
+        return PlayerTurn;
     }
     
-    public void setIsPlayerTurn(boolean isPlayerTurn) {
-        this.isPlayerTurn = isPlayerTurn;
+    public void setPlayerTurn(boolean PlayerTurn) {
+        this.PlayerTurn = PlayerTurn;
     }
     
     public void setScore(int score) {
@@ -70,6 +70,10 @@ public class Player {
     
     public void setColorIcon(Color colorIcon) {
         this.colorIcon = colorIcon;
+    }
+
+    public Color getColorIcon() {
+        return colorIcon;
     }
     
 }

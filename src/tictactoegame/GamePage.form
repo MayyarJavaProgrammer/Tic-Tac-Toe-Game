@@ -34,6 +34,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="16" style="1"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="X - player"/>
       </Properties>
@@ -98,6 +101,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="boardBackgroundLabel">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/tictactoegame/images/board1.png"/>
@@ -105,48 +111,29 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="35" y="141" width="330" height="-1"/>
+          <AbsoluteConstraints x="35" y="141" width="300" height="300"/>
         </Constraint>
       </Constraints>
     </Component>
     <Container class="javax.swing.JPanel" name="boardLabelsPanel">
       <Properties>
+        <Property name="focusable" type="boolean" value="false"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[300, 300]"/>
+          <Dimension value="[270, 270]"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="35" y="141" width="330" height="300"/>
+          <AbsoluteConstraints x="35" y="141" width="300" height="300"/>
         </Constraint>
       </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
         <Property name="columns" type="int" value="3"/>
-        <Property name="horizontalGap" type="int" value="5"/>
+        <Property name="horizontalGap" type="int" value="25"/>
         <Property name="rows" type="int" value="3"/>
-        <Property name="verticalGap" type="int" value="5"/>
+        <Property name="verticalGap" type="int" value="25"/>
       </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="boardLabel1">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel2">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel3">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel4">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel5">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel6">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel7">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel8">
-        </Component>
-        <Component class="javax.swing.JLabel" name="boardLabel9">
-        </Component>
-      </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="restartGameBtn">
       <Properties>
