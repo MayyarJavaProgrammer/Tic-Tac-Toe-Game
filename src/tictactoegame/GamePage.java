@@ -124,7 +124,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
 
     public javax.swing.JLabel[] boardLabels;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel boardBackgroundLabel;
+    public javax.swing.JLabel boardBackgroundLabel;
     private javax.swing.JPanel boardLabelsPanel;
     public javax.swing.JButton gamePageBackBtn;
     public javax.swing.JLabel oPlayerNameLabel;

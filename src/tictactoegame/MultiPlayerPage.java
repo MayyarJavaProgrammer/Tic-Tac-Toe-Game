@@ -42,8 +42,10 @@ public class MultiPlayerPage extends javax.swing.JPanel implements ResetFont {
         playerOLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         playerOLabel.setText("Player O");
 
+        playerXField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         playerXField.setText("X - player");
 
+        playerOField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         playerOField.setText("O - player");
         playerOField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +93,7 @@ public class MultiPlayerPage extends javax.swing.JPanel implements ResetFont {
                 .addComponent(multiPlayerStartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(multiPlayerBackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 

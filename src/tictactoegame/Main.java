@@ -12,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import jdk.jfr.FlightRecorder;
 
@@ -33,9 +34,8 @@ public class Main extends javax.swing.JFrame {
     Container container;
     Player xPlayer;
     Player oPlayer;
-    FontSizes fontSize = FontSizes.MEDUIM;
     boolean isTwoPlayerGame;
-    public Main() {       
+    public Main() {
         initComponents();
         creatContainer();
         creatAndShowStartPage();
@@ -92,40 +92,41 @@ public class Main extends javax.swing.JFrame {
         settingsPage = new SettingsPage();
         cardLayout = new CardLayout();
         container = this.getContentPane();
-        
+
         container.setLayout(cardLayout);
         container.getLayout().addLayoutComponent("startPage", startPage);
-        container.add(startPage);       
+        container.add(startPage);
 
         container.getLayout().addLayoutComponent("singlePlayerPage", singlePlayerPage);
         container.add(singlePlayerPage);
-     
+
         container.getLayout().addLayoutComponent("multiPlayerPage", multiPlayerPage);
         container.add(multiPlayerPage);
-               
+
         container.getLayout().addLayoutComponent("settingsPage", settingsPage);
         container.add(settingsPage);
-        
-      
+
     }
+
     private void creatAndShowStartPage() {
+        startPage.setFontSize(settingsPage.fontSize);
         startPage.SinglePlayerBtn.addActionListener(singlePlayerBtnListener);
         startPage.multiPlayerBtn.addActionListener(multiPlayerBtnListener);
         startPage.settingsBtn.addActionListener(settingsBtnListener);
-        
+
         cardLayout.show(container, "startPage");
     }
 
     private void creatAndShowSinglePlayerPage() {
-        singlePlayerPage.setFontSize(fontSize);
+        singlePlayerPage.setFontSize(settingsPage.fontSize);
         singlePlayerPage.singlePlayerStartBtn.addActionListener(singlePlayerStartBtnListener);
         singlePlayerPage.singlePlayerBackBtn.addActionListener(singlePlayerBackBtnListener);
-        
+
         cardLayout.show(container, "singlePlayerPage");
     }
 
     private void creatAndShowMultiPlayerPage() {
-        multiPlayerPage.setFontSize(fontSize);
+        multiPlayerPage.setFontSize(settingsPage.fontSize);
         multiPlayerPage.multiPlayerBackBtn.addActionListener(multiPlayerBackBtnListener);
         multiPlayerPage.multiPlayerStartBtn.addActionListener(multiPlayerStartBtnListener);
 
@@ -134,28 +135,27 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowSettingsPage() {
         settingsPage.settingsBackBtn.addActionListener(settingsBackBtnListener);
-        settingsPage.fontSizeComboBox.addItemListener(fontSizeItemListener);
-
         cardLayout.show(container, "settingsPage");
     }
 
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
+        gamePage.boardBackgroundLabel.setIcon(settingsPage.boardBackgroundLabel);
         xPlayer = new Player(0, "X - Player", true, 'X');
         oPlayer = new Player(0, "O - Player", false, 'O');
-        
+
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.restartGameBtn.addActionListener(restartgameBtnListener);
         gamePage.addBoardLabels();
-        gamePage.setFontSize(fontSize);
+        gamePage.setFontSize(settingsPage.fontSize);
         setBoardLabelsListener();
         gamePage.xPlayerNameLabel.setText(xPlayer.getName());
         if (isTwoPlayerGame) {
             gamePage.oPlayerNameLabel.setText(oPlayer.getName());
         }
-        
+
         container.getLayout().addLayoutComponent("gamePage", gamePage);
-        container.add(gamePage); 
+        container.add(gamePage);
         cardLayout.show(container, "gamePage");
     }
 
@@ -170,7 +170,7 @@ public class Main extends javax.swing.JFrame {
         gamePage.boardLabels[7].addMouseListener(boardLabelsListener);
         gamePage.boardLabels[8].addMouseListener(boardLabelsListener);
     }
-    
+
     private void removeBoardLabelsListener() {
         gamePage.boardLabels[0].removeMouseListener(boardLabelsListener);
         gamePage.boardLabels[1].removeMouseListener(boardLabelsListener);
@@ -214,21 +214,9 @@ public class Main extends javax.swing.JFrame {
     ActionListener multiPlayerBackBtnListener = (evt) -> {
         cardLayout.show(container, "startPage");
     };
-    //settings page listener
-    ItemListener fontSizeItemListener = (e) -> {
-
-        if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(0))) {
-            fontSize = FontSizes.SMALL;
-        } else if (e.getItem().equals(settingsPage.fontSizeComboBox.getItemAt(1))) {
-            fontSize = FontSizes.MEDUIM;
-        } else {
-            fontSize = FontSizes.LARGE;
-        }
-        startPage.setFontSize(fontSize);
-        settingsPage.setFontSize(fontSize);
-    };
 
     ActionListener settingsBackBtnListener = (evt) -> {
+        startPage.setFontSize(settingsPage.fontSize);
         cardLayout.show(container, "startPage");
     };
     //game page listener
@@ -241,12 +229,12 @@ public class Main extends javax.swing.JFrame {
             cardLayout.show(container, "singlePlayerPage");
         }
     };
-    
+
     ActionListener restartgameBtnListener = (evt) -> {
         gamePage = null;
         creatAndShowGamePage();
     };
-    
+
     MouseListener boardLabelsListener = new MouseListener() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -255,17 +243,17 @@ public class Main extends javax.swing.JFrame {
         @Override
         public void mousePressed(MouseEvent e) {
             if (((JLabel) e.getSource()).getText().equals("") && gamePage.getNumberOfClick() < 9) {
-                if (xPlayer.isPlayerTurn()) {                  
+                if (xPlayer.isPlayerTurn()) {
                     ((JLabel) e.getSource()).setForeground(xPlayer.getColorIcon());
                     ((JLabel) e.getSource()).setText("" + xPlayer.getPlayerIcon());
                     xPlayer.setPlayerTurn(false);
                     gamePage.increaseNumberOfClick();
                     gamePage.checkIfThereIsAWinner();
-                    if(!gamePage.isGameEnd()) {
+                    if (!gamePage.isGameEnd()) {
                         gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
                         gamePage.oPlayerNameLabel.setForeground(Color.red);
                     } else {
-                        removeBoardLabelsListener();                       
+                        removeBoardLabelsListener();
                     }
                 } else if (isTwoPlayerGame && gamePage.getNumberOfClick() < 9) {
                     ((JLabel) e.getSource()).setText("" + oPlayer.getPlayerIcon());
@@ -273,26 +261,26 @@ public class Main extends javax.swing.JFrame {
                     xPlayer.setPlayerTurn(true);
                     gamePage.increaseNumberOfClick();
                     gamePage.checkIfThereIsAWinner();
-                    if(!gamePage.isGameEnd()) {
+                    if (!gamePage.isGameEnd()) {
                         gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
                         gamePage.xPlayerNameLabel.setForeground(Color.blue);
                     } else {
                         removeBoardLabelsListener();
                     }
-                } 
-                if(!isTwoPlayerGame && !xPlayer.isPlayerTurn() && gamePage.getNumberOfClick() < 9 && !gamePage.isGameEnd()) {
+                }
+                if (!isTwoPlayerGame && !xPlayer.isPlayerTurn() && gamePage.getNumberOfClick() < 9 && !gamePage.isGameEnd()) {
                     int randomBoardLabel = new Random().nextInt(9);
                     while (true) {
                         if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
                             gamePage.boardLabels[randomBoardLabel].setText("O");
                             gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
-                             if(!gamePage.isGameEnd()) {
+                            if (!gamePage.isGameEnd()) {
                                 gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
                                 gamePage.xPlayerNameLabel.setForeground(Color.blue);
                                 xPlayer.setPlayerTurn(true);
                             } else {
-                                 removeBoardLabelsListener();
-                             }
+                                removeBoardLabelsListener();
+                            }
                             break;
                         } else {
                             randomBoardLabel = new Random().nextInt(9);
