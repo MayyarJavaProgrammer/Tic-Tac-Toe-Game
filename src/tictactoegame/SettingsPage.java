@@ -64,6 +64,11 @@ public class SettingsPage extends javax.swing.JPanel implements ResetFont{
 
         resetSettingsBtn.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         resetSettingsBtn.setText("Reset To Default Settings");
+        resetSettingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetSettingsBtnActionPerformed(evt);
+            }
+        });
 
         settingsBackBtn.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         settingsBackBtn.setText("Back");
@@ -128,6 +133,13 @@ public class SettingsPage extends javax.swing.JPanel implements ResetFont{
             boardBackgroundLabel = new ImageIcon(this.getClass().getResource("/tictactoegame/images/board4.png"));
         }
     }//GEN-LAST:event_gameBoardComboBoxItemStateChanged
+
+    private void resetSettingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetSettingsBtnActionPerformed
+        gameBoardComboBox.setSelectedIndex(0);
+        fontSizeComboBox.setSelectedIndex(1);
+        boardBackgroundLabel = new ImageIcon(this.getClass().getResource("/tictactoegame/images/board1.png"));
+        fontSize = FontSizes.MEDUIM;
+    }//GEN-LAST:event_resetSettingsBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
