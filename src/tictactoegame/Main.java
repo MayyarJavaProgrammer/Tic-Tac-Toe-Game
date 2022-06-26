@@ -35,6 +35,7 @@ public class Main extends javax.swing.JFrame {
     Player xPlayer;
     Player oPlayer;
     boolean isTwoPlayerGame;
+
     public Main() {
         initComponents();
         creatContainer();
@@ -142,14 +143,15 @@ public class Main extends javax.swing.JFrame {
 
     private void creatAndShowGamePage() {
         gamePage = new GamePage();
+        gamePage.xPlayerScore.setText("" + xPlayer.getScore());
+        gamePage.oPlayerScore.setText("" + oPlayer.getScore());
         gamePage.boardBackgroundLabel.setIcon(settingsPage.boardBackgroundLabel);
-        xPlayer = new Player(0, "X - Player", true, 'X');
-        oPlayer = new Player(0, "O - Player", false, 'O');
-
+        
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.restartGameBtn.addActionListener(restartgameBtnListener);
         gamePage.addBoardLabels();
         gamePage.setFontSize(settingsPage.fontSize);
+        
         setBoardLabelsListener();
         gamePage.xPlayerNameLabel.setText(xPlayer.getName());
         if (isTwoPlayerGame) {
@@ -199,6 +201,8 @@ public class Main extends javax.swing.JFrame {
     //single page listener
     ActionListener singlePlayerStartBtnListener = (evt) -> {
         xPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), true, 'X');
+        //computer object
+        oPlayer = new Player(0, singlePlayerPage.playerNameField.getText(), false, 'O');
         isTwoPlayerGame = false;
         creatAndShowGamePage();
     };
@@ -209,6 +213,8 @@ public class Main extends javax.swing.JFrame {
 
     //multi page listener
     ActionListener multiPlayerStartBtnListener = (evt) -> {
+        xPlayer = new Player(0, multiPlayerPage.playerXField.getText(), true, 'X');
+        oPlayer = new Player(0, multiPlayerPage.playerOField.getText(), false, 'O');
         isTwoPlayerGame = true;
         creatAndShowGamePage();
     };
@@ -233,7 +239,15 @@ public class Main extends javax.swing.JFrame {
     };
 
     ActionListener restartgameBtnListener = (evt) -> {
-        gamePage = null;
+        gamePage.addBoardLabels();
+        setBoardLabelsListener();
+        if (isTwoPlayerGame) {
+            xPlayer.setPlayerTurn(true);
+
+            oPlayer.setPlayerTurn(false);
+        } else {
+            xPlayer.setPlayerTurn(true);
+        }
         creatAndShowGamePage();
     };
 
@@ -255,6 +269,7 @@ public class Main extends javax.swing.JFrame {
                         gamePage.xPlayerNameLabel.setForeground(Color.BLACK);
                         gamePage.oPlayerNameLabel.setForeground(Color.red);
                     } else {
+                        changeScore(gamePage.getWinnerIconPlayer());
                         removeBoardLabelsListener();
                     }
                 } else if (isTwoPlayerGame && gamePage.getNumberOfClick() < 9) {
@@ -267,6 +282,7 @@ public class Main extends javax.swing.JFrame {
                         gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
                         gamePage.xPlayerNameLabel.setForeground(Color.blue);
                     } else {
+                        changeScore(gamePage.getWinnerIconPlayer());
                         removeBoardLabelsListener();
                     }
                 }
@@ -276,18 +292,21 @@ public class Main extends javax.swing.JFrame {
                         if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
                             gamePage.boardLabels[randomBoardLabel].setText("O");
                             gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
-                            if (!gamePage.isGameEnd()) {
-                                gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
-                                gamePage.xPlayerNameLabel.setForeground(Color.blue);
-                                xPlayer.setPlayerTurn(true);
-                            } else {
-                                removeBoardLabelsListener();
-                            }
                             break;
                         } else {
                             randomBoardLabel = new Random().nextInt(9);
                         }
-
+                    }
+                    
+                    gamePage.increaseNumberOfClick();
+                    gamePage.checkIfThereIsAWinner();
+                    if (!gamePage.isGameEnd()) {
+                        gamePage.oPlayerNameLabel.setForeground(Color.BLACK);
+                        gamePage.xPlayerNameLabel.setForeground(Color.blue);
+                        xPlayer.setPlayerTurn(true);
+                    } else {
+                        changeScore(gamePage.getWinnerIconPlayer());
+                        removeBoardLabelsListener();
                     }
                 }
             }
@@ -306,6 +325,17 @@ public class Main extends javax.swing.JFrame {
         }
 
     };
+
+    private void changeScore(char winnerIconPlayer) {
+        if (winnerIconPlayer == 'X') {
+            xPlayer.setScore(xPlayer.getScore() + 1);
+            gamePage.xPlayerScore.setText("" + xPlayer.getScore());
+        } else {
+            oPlayer.setScore(oPlayer.getScore() + 1);
+            gamePage.oPlayerScore.setText("" + oPlayer.getScore());
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

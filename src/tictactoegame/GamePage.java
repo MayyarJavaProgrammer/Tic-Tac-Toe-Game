@@ -19,7 +19,12 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
      */
     private boolean gameEnd;
     private int numberOfClick;
+    private char winnerIconPlayer;
 
+    public char getWinnerIconPlayer() {
+        return winnerIconPlayer;
+    }
+    
     public int getNumberOfClick() {
         return numberOfClick;
     }
@@ -128,11 +133,11 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     private javax.swing.JPanel boardLabelsPanel;
     public javax.swing.JButton gamePageBackBtn;
     public javax.swing.JLabel oPlayerNameLabel;
-    private javax.swing.JLabel oPlayerScore;
+    public javax.swing.JLabel oPlayerScore;
     public javax.swing.JButton restartGameBtn;
     private javax.swing.JLabel vsSymbolLabel;
     public javax.swing.JLabel xPlayerNameLabel;
-    private javax.swing.JLabel xPlayerScore;
+    public javax.swing.JLabel xPlayerScore;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -145,46 +150,37 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
     }
 
     public void checkIfThereIsAWinner() {
-        char winnerIconPlayer;
         if (boardLabels[0].getText().equals(boardLabels[1].getText()) && boardLabels[0].getText().equals(boardLabels[2].getText()) && !boardLabels[0].getText().equals("")) {
             winnerIconPlayer = boardLabels[0].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[0], boardLabels[1], boardLabels[2]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[3].getText().equals(boardLabels[4].getText()) && boardLabels[3].getText().equals(boardLabels[5].getText()) && !boardLabels[3].getText().equals("")) {
             winnerIconPlayer = boardLabels[3].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[3], boardLabels[4], boardLabels[5]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[6].getText().equals(boardLabels[7].getText()) && boardLabels[6].getText().equals(boardLabels[8].getText()) && !boardLabels[6].getText().equals("")) {
             winnerIconPlayer = boardLabels[6].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[6], boardLabels[7], boardLabels[8]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[0].getText().equals(boardLabels[3].getText()) && boardLabels[0].getText().equals(boardLabels[6].getText()) && !boardLabels[0].getText().equals("")) {
             winnerIconPlayer = boardLabels[0].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[0], boardLabels[3], boardLabels[6]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[1].getText().equals(boardLabels[4].getText()) && boardLabels[1].getText().equals(boardLabels[7].getText()) && !boardLabels[1].getText().equals("")) {
             winnerIconPlayer = boardLabels[1].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[1], boardLabels[4], boardLabels[7]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[2].getText().equals(boardLabels[5].getText()) && boardLabels[2].getText().equals(boardLabels[8].getText()) && !boardLabels[2].getText().equals("")) {
             winnerIconPlayer = boardLabels[2].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[2], boardLabels[5], boardLabels[8]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         }else if (boardLabels[0].getText().equals(boardLabels[4].getText()) && boardLabels[0].getText().equals(boardLabels[8].getText()) && !boardLabels[0].getText().equals("")) {
             winnerIconPlayer = boardLabels[0].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[0], boardLabels[4], boardLabels[8]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         } else if (boardLabels[2].getText().equals(boardLabels[4].getText()) && boardLabels[2].getText().equals(boardLabels[6].getText()) && !boardLabels[2].getText().equals("")) {
             winnerIconPlayer = boardLabels[2].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[2], boardLabels[4], boardLabels[6]);
-            changeScore(winnerIconPlayer);
             setGameEnd(true);
         }
         
@@ -197,11 +193,5 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         repaint();
     }
 
-    private void changeScore(char winnerIconPlayer) {
-        if (winnerIconPlayer == 'X') {
-            xPlayerScore.setText((Integer.parseInt(xPlayerScore.getText()) + 1 + ""));
-        } else {
-            oPlayerScore.setText((Integer.parseInt(oPlayerScore.getText()) + 1 + ""));
-        }        
-    }
+
 }
