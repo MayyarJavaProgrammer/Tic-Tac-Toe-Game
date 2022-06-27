@@ -18,20 +18,22 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
      * Creates new form GamePage
      */
     private boolean gameEnd;
-    private int numberOfClick;
+    private int noClick;
     private char winnerIconPlayer;
+    public int noCilck;
 
     public char getWinnerIconPlayer() {
         return winnerIconPlayer;
     }
-    
+
     public int getNumberOfClick() {
-        return numberOfClick;
+        return noClick;
     }
 
     public void increaseNumberOfClick() {
-        this.numberOfClick += 1;
+        this.noClick += 1;
     }
+
     public boolean isGameEnd() {
         return gameEnd;
     }
@@ -174,7 +176,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
             winnerIconPlayer = boardLabels[2].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[2], boardLabels[5], boardLabels[8]);
             setGameEnd(true);
-        }else if (boardLabels[0].getText().equals(boardLabels[4].getText()) && boardLabels[0].getText().equals(boardLabels[8].getText()) && !boardLabels[0].getText().equals("")) {
+        } else if (boardLabels[0].getText().equals(boardLabels[4].getText()) && boardLabels[0].getText().equals(boardLabels[8].getText()) && !boardLabels[0].getText().equals("")) {
             winnerIconPlayer = boardLabels[0].getText().charAt(0);
             changeWinnerLabelsColor(boardLabels[0], boardLabels[4], boardLabels[8]);
             setGameEnd(true);
@@ -183,7 +185,7 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
             changeWinnerLabelsColor(boardLabels[2], boardLabels[4], boardLabels[6]);
             setGameEnd(true);
         }
-        
+
     }
 
     private void changeWinnerLabelsColor(JLabel label1, JLabel label2, JLabel label3) {
@@ -192,6 +194,5 @@ public class GamePage extends javax.swing.JPanel implements ResetFont {
         label3.setForeground(Color.YELLOW);
         repaint();
     }
-
 
 }

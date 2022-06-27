@@ -146,12 +146,12 @@ public class Main extends javax.swing.JFrame {
         gamePage.xPlayerScore.setText("" + xPlayer.getScore());
         gamePage.oPlayerScore.setText("" + oPlayer.getScore());
         gamePage.boardBackgroundLabel.setIcon(settingsPage.boardBackgroundLabel);
-        
+
         gamePage.gamePageBackBtn.addActionListener(gamePageBackBtnListener);
         gamePage.restartGameBtn.addActionListener(restartgameBtnListener);
         gamePage.addBoardLabels();
         gamePage.setFontSize(settingsPage.fontSize);
-        
+
         setBoardLabelsListener();
         gamePage.xPlayerNameLabel.setText(xPlayer.getName());
         if (isTwoPlayerGame) {
@@ -288,16 +288,21 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (!isTwoPlayerGame && !xPlayer.isPlayerTurn() && gamePage.getNumberOfClick() < 9 && !gamePage.isGameEnd()) {
                     int randomBoardLabel = new Random().nextInt(9);
-                    while (true) {
-                        if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
-                            gamePage.boardLabels[randomBoardLabel].setText("O");
-                            gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
-                            break;
-                        } else {
-                            randomBoardLabel = new Random().nextInt(9);
+                    int index = doComputerClick();
+                    if (index == -1) {
+                        while (true) {
+                            if (gamePage.boardLabels[randomBoardLabel].getText().equals("")) {
+                                gamePage.boardLabels[randomBoardLabel].setText("O");
+                                gamePage.boardLabels[randomBoardLabel].setForeground(Color.red);
+                                break;
+                            } else {
+                                randomBoardLabel = new Random().nextInt(9);
+                            }
                         }
+                    } else if (index != -1) {
+                        gamePage.boardLabels[index].setText("O");
+                        gamePage.boardLabels[index].setForeground(Color.red);
                     }
-                    
                     gamePage.increaseNumberOfClick();
                     gamePage.checkIfThereIsAWinner();
                     if (!gamePage.isGameEnd()) {
@@ -310,6 +315,8 @@ public class Main extends javax.swing.JFrame {
                     }
                 }
             }
+            gamePage.noCilck++;
+//            System.out.println(gamePage.noCilck);
         }
 
         @Override
@@ -336,6 +343,66 @@ public class Main extends javax.swing.JFrame {
 
         }
     }
+
+    private int doComputerClick() {
+        if (gamePage.noCilck == 0 && gamePage.boardLabels[4].getText().equals("")) {
+            return 4;
+        } else if (gamePage.noCilck == 0) {
+            return -1;
+        } else {
+            if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[1].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[2].getText().equals("")) {
+                return 2;
+            } else if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[2].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[1].getText().equals("")) {
+                return 1;
+            } else if (gamePage.boardLabels[3].getText().equals(gamePage.boardLabels[4].getText()) && gamePage.boardLabels[3].getText().equals("X") && gamePage.boardLabels[5].getText().equals("")) {
+                return 5;
+            } else if (gamePage.boardLabels[3].getText().equals(gamePage.boardLabels[5].getText()) && gamePage.boardLabels[3].getText().equals("X") && gamePage.boardLabels[4].getText().equals("")) {
+                return 4;
+            } else if (gamePage.boardLabels[6].getText().equals(gamePage.boardLabels[7].getText()) && gamePage.boardLabels[6].getText().equals("X") && gamePage.boardLabels[8].getText().equals("")) {
+                return 8;
+            } else if (gamePage.boardLabels[6].getText().equals(gamePage.boardLabels[8].getText()) && gamePage.boardLabels[6].getText().equals("X") && gamePage.boardLabels[7].getText().equals("")) {
+                return 7;
+            } else if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[3].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[6].getText().equals("")) {
+                return 6;
+            } else if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[6].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[3].getText().equals("")) {
+                return 3;
+            } else if (gamePage.boardLabels[1].getText().equals(gamePage.boardLabels[4].getText()) && gamePage.boardLabels[1].getText().equals("X") && gamePage.boardLabels[7].getText().equals("")) {
+                return 7;
+            } else if (gamePage.boardLabels[1].getText().equals(gamePage.boardLabels[7].getText()) && gamePage.boardLabels[1].getText().equals("X") && gamePage.boardLabels[4].getText().equals("")) {
+                return 4;
+            } else if (gamePage.boardLabels[2].getText().equals(gamePage.boardLabels[5].getText()) && gamePage.boardLabels[2].getText().equals("X") && gamePage.boardLabels[8].getText().equals("")) {
+                return 8;
+            } else if (gamePage.boardLabels[2].getText().equals(gamePage.boardLabels[8].getText()) && gamePage.boardLabels[2].getText().equals("X") && gamePage.boardLabels[5].getText().equals("")) {
+                return 5;
+            } else if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[4].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[8].getText().equals("")) {
+                return 8;
+            } else if (gamePage.boardLabels[0].getText().equals(gamePage.boardLabels[8].getText()) && gamePage.boardLabels[0].getText().equals("X") && gamePage.boardLabels[4].getText().equals("")) {
+                return 4;
+            } else if (gamePage.boardLabels[2].getText().equals(gamePage.boardLabels[4].getText()) && gamePage.boardLabels[2].getText().equals("X") && gamePage.boardLabels[6].getText().equals("")) {
+                return 6;
+            } else if (gamePage.boardLabels[2].getText().equals(gamePage.boardLabels[6].getText()) && gamePage.boardLabels[2].getText().equals("X") && gamePage.boardLabels[4].getText().equals("")) {
+                return 4;
+            } //            first 
+            else if (gamePage.boardLabels[1].getText().equals(gamePage.boardLabels[2].getText()) && gamePage.boardLabels[1].getText().equals("X") && gamePage.boardLabels[0].getText().equals("")) {
+                return 0;
+            } else if (gamePage.boardLabels[4].getText().equals(gamePage.boardLabels[5].getText()) && gamePage.boardLabels[4].getText().equals("X") && gamePage.boardLabels[3].getText().equals("")) {
+                return 3;
+            } else if (gamePage.boardLabels[7].getText().equals(gamePage.boardLabels[8].getText()) && gamePage.boardLabels[7].getText().equals("X") && gamePage.boardLabels[6].getText().equals("")) {
+                return 6;
+            } else if (gamePage.boardLabels[3].getText().equals(gamePage.boardLabels[6].getText()) && gamePage.boardLabels[3].getText().equals("X") && gamePage.boardLabels[0].getText().equals("")) {
+                return 0;
+            } else if (gamePage.boardLabels[4].getText().equals(gamePage.boardLabels[7].getText()) && gamePage.boardLabels[4].getText().equals("X") && gamePage.boardLabels[1].getText().equals("")) {
+                return 1;
+            } else if (gamePage.boardLabels[5].getText().equals(gamePage.boardLabels[8].getText()) && gamePage.boardLabels[5].getText().equals("X") && gamePage.boardLabels[2].getText().equals("")) {
+                return 2;
+            } else if (gamePage.boardLabels[4].getText().equals(gamePage.boardLabels[6].getText()) && gamePage.boardLabels[4].getText().equals("X") && gamePage.boardLabels[2].getText().equals("")) {
+                return 2;
+            }
+            return -1;
+
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
