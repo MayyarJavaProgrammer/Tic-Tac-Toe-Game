@@ -15,7 +15,7 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
+import javax.swing.ImageIcon;
 /**
  *
  * @author PC
@@ -52,6 +52,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic Tac Toe Game");
+        setIconImage(new ImageIcon(getClass().getResource("/tictactoegame/images/icons/ticTacToeGame.png")).getImage());
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
